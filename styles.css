@@ -274,6 +274,24 @@ section {
     margin-bottom: 10px;        /* リスト項目間の余白 */
     line-height: 1.6;           /* リスト項目の行間 */
 }
+
+.slide {
+    text-align: center;
+}
+
+.slide img {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.slide h3 {
+    margin-top: 10px;
+}
+
+.slide p {
+    margin-top: 5px;
+}
 /*ニュースセクション*/
 #news {
     background-color: #fff;   /* 薄いグレーの背景 */
