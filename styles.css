@@ -133,7 +133,26 @@ nav ul li a:hover {
     margin: 0 10%;
 }
 
-.slide.active {
+#slideshow .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.5s, transform 1.5s; /* transform へのトランジションを追加 */
+    transform: scale(1.1); /* 初期値としてややズームインしておく */
+    z-index: 1;
+}
+
+#slideshow .slide img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+}
+
+#slideshow .slide.active {
     opacity: 1;
     transform: scale(1); /* アクティブなスライドを通常の大きさに戻す */
     z-index: 2; /* アクティブなスライドを他のスライドの上に表示 */
