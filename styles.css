@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;  /* 任意のフォントに変更可 */
+    font-family: 'Noto Sans JP', sans-serif; /* 例としてGoogle FontsのNoto Sans JPを使用 */
     font-size: 16px;
     line-height: 1.5;
     background-color: #000;
@@ -59,6 +59,27 @@ nav ul li a {
 nav ul li a:hover {
     color: #ff6600;         /* ホバー時の色 */
 }
+
+nav ul li a::after {
+    content: ""; /* 空のコンテンツ */
+    display: block;
+    width: 0; /* 初期状態では幅0 */
+    height: 2px; /* 線の太さ */
+    background: #ff6600; /* 線の色をオレンジに */
+    transition: width 0.3s; /* 幅のアニメーション効果 */
+    margin: 5px auto 0; /* 上に5pxのマージンを設定して、左右は中央揃え */
+}
+
+nav ul li a:hover::after {
+    width: 100%; /* ホバー時に幅を100%に */
+}
+
+/* CONTACT リンクの線の効果を取り除く */
+.contact-link::after {
+    display: none;
+}
+
+
 /* コンタクトのリンクの初期状態 */
 .contact-link {
     background-color: #ff6600; /* オレンジの背景 */
@@ -108,7 +129,7 @@ nav ul li a:hover {
 }
 
 #home p {
-    font-size: 1.5rem;   /* h1のみの設定だったものをh1とpの両方に適用 */
+    font-size: 1rem;   /* h1のみの設定だったものをh1とpの両方に適用 */
     color: #fff;
     text-align: left;   /* 中央揃えから左揃えに変更 */
     margin: 20px 0;   /* 上下のマージンを均一に */
@@ -133,14 +154,33 @@ nav ul li a:hover {
     margin: 0 10%;
 }
 
-.slide.active {
+#slideshow .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.5s, transform 1.5s; /* transform へのトランジションを追加 */
+    transform: scale(1.1); /* 初期値としてややズームインしておく */
+    z-index: 1;
+}
+
+#slideshow .slide img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+}
+
+#slideshow .slide.active {
     opacity: 1;
     transform: scale(1); /* アクティブなスライドを通常の大きさに戻す */
     z-index: 2; /* アクティブなスライドを他のスライドの上に表示 */
 }
 
 .cta-container {
-    text-align: center;
+    text-align: left; 
 }
 
 
@@ -164,7 +204,54 @@ section {
 .cta-button:hover {
     background-color: #ff8a40;
 }
+/*スクロールダウン全体の場所*/
+.scrolldown1{
+    position:absolute;
+    left:50%;
+    bottom:10px;
+    height:50px;
+    z-index: 100;
+}
 
+/*Scrollテキストの描写*/
+.scrolldown1 span{
+    position: absolute;
+    left:-15px;
+    top: -15px;
+    color: #eee;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+}
+
+/* 線の描写 */
+.scrolldown1::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 1px;
+    height: 30px;
+    background: #eee;
+    animation: pathmove 1.4s ease-in-out infinite;
+    opacity:0;
+}
+
+/*高さ・位置・透過が変化して線が上から下に動く*/
+@keyframes pathmove{
+    0%{
+        height:0;
+        top:0;
+        opacity: 0;
+    }
+    30%{
+        height:30px;
+        opacity: 1;
+    }
+    100%{
+        height:0;
+        top:50px;
+        opacity: 0;
+    }
+}
 
 /* サークルについてのセクションのスタイル */
 #about {
@@ -240,7 +327,6 @@ section {
     font-size: 24px;            /* 見出しのフォントサイズ */
     margin-bottom: 20px;        /* 見出しの下の余白 */
     color: #333;                /* 見出しの文字色 */
-    border-bottom: 2px solid #ff6600; /* 見出しの下にアクセントボーダーをつける */
     padding-bottom: 10px;       /* ボーダーと見出しの間の余白 */
 }
 
@@ -288,126 +374,83 @@ section {
     color: #333; /* Dark grey */
 }
 
-.news-list {
-    list-style-type: none;
-    padding: 0;
+.tab {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
 }
 
-.news-list li {
+.tab li {
+    list-style-type: none;
+}
+
+.tab li a {
+    display: block;
+    padding: 10px 20px;
+    margin: 0 5px;
+    background-color: #ddd;
+    border-radius: 5px 5px 0 0;
+    transition: background-color 0.3s;
+}
+
+.tab li a:hover {
+    background-color: #bbb;
+}
+
+.tab li.active a {
+    background-color: #fff;
+    cursor: default;
+}
+
+.area {
+    display: none;
+}
+
+.area.is-active {
+    display: block;
+}
+
+.area h3 {
+    font-size: 1.2rem;
     margin-bottom: 15px;
 }
 
-.news-list a {
-    color: #007BFF; /* Example blue for links */
-    text-decoration: none;
-    font-size: 1.2rem;
-    transition: color 0.3s;
+.area ul {
+    list-style-type: none;
 }
 
-.news-list a:hover {
-    color: #0056b3; /* Darkened blue on hover */
+.area li {
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
 }
 
-.news-date {
-    font-size: 0.9rem;
-    color: #777; /* Light grey for date */
-    margin-left: 10px;
+.area li:last-child {
+    border-bottom: none;
 }
 
-.more-news {
-    margin-top: 20px;
-}
-
-.more-news a {
-    color: #007BFF;
-    text-decoration: underline;
-    font-weight: bold;
-}
-
-
-/* 最新のブログ記事セクションのスタイル */
-#blog {
-    background-color: #fff;   /* 薄いグレーの背景 */
-    padding: 40px 20px;         /* 内側の余白 */
-    margin: 20px 0;             /* 上下の余白 */
-    margin-top: 0;      /* 上部の余白を0に */
-    margin-bottom: 0;
-    padding-bottom: 60px; /* この値はお好みに応じて調整してください */
-    
-}
-
-#blog h2 {
-    font-size: 24px;            /* 見出しのフォントサイズ */
-    margin-bottom: 20px;        /* 見出しの下の余白 */
-    color: #333;                /* 見出しの文字色 */
-    border-bottom: 2px solid #ff6600; /* 見出しの下にアクセントボーダーをつける */
-    padding-bottom: 10px;       /* ボーダーと見出しの間の余白 */
-}
-
-#blog ul {
-    list-style-type: none;      /* リストマークを使用しない */
-    margin-left: 0;             /* リストの左の余白をリセット */
-    padding-left: 0;            /* リストの左のパディングをリセット */
-}
-
-#blog li {
-    font-size: 18px;            /* リスト項目のフォントサイズ */
-    margin-bottom: 15px;        /* リスト項目間の余白 */
-}
-
-#blog li a {
-    color: #555;                /* リンクの文字色 */
-    text-decoration: none;      /* アンダーラインをなしに */
-    display: block;             /* ブロック要素として扱う */
-}
-
-#blog li a:hover {
-    text-decoration: underline; /* ホバー時にアンダーラインを表示 */
-}
-
-#blog li strong {
-    display: block;             /* タイトルをブロック要素として表示 */
-    color: #ff6600;             /* タイトルの文字色 */
-    margin-bottom: 5px;        /* タイトルの下の余白 */
-}
-
-#blog li span {
-    font-size: 14px;            /* 日付のフォントサイズ */
-    color: #999;                /* 日付の文字色 */
-}
-
-.archive-link {
-    color: #ff6600;             /* アーカイブリンクの文字色 */
-    text-decoration: none;      /* アンダーラインをなしに */
-    display: inline-block;     /* インラインブロック要素として扱う */
-    margin-top: 20px;           /* リンクの上の余白 */
-}
-
-.archive-link:hover {
-    text-decoration: underline; /* ホバー時にアンダーラインを表示 */
-}
 
 /* 参加方法セクション全体のスタイル */
 #join {
-    background-color: #f7f9fc; /* 薄い背景色 */
-    padding: 40px 20px;        /* 内部の余白 */
-    margin-top: 0;      /* 上部の余白を0に */
+    background: linear-gradient(to bottom, #f0f2f7, #f7f9fc); /* グラデーション背景 */
+    padding: 40px 20px;
+    margin-top: 0;
     margin-bottom: 0;
-    padding-bottom: 60px; /* この値はお好みに応じて調整してください */
-    
+    padding-bottom: 60px;
+    font-family: 'Noto Sans JP', sans-serif; /* 例: Google FontsのNoto Sans JP */
 }
 
 #join h2 {
-    font-size: 24px;
-    color: #333;
+    font-size: 26px; /* フォントサイズを少し大きく */
+    color: #2c3e50; /* 濃い色に変更 */
     margin-bottom: 30px;
-    border-bottom: 2px solid #0077cc;
     padding-bottom: 10px;
+    border-bottom: 2px solid #e0e0e0; /* 下線を追加 */
 }
 
 /* 参加手順リストのスタイル */
 .join-steps {
-    list-style-type: decimal;
+    list-style-type: none; /* デフォルトの番号を削除 */
     margin-left: 30px;
     margin-bottom: 30px;
 }
@@ -415,15 +458,27 @@ section {
 .join-steps li {
     font-size: 18px;
     color: #555;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     line-height: 1.6;
+    position: relative;
+    padding-left: 30px; /* アイコンのスペースを作るためのパディング */
+}
+
+/* リストの前にアイコンを追加 */
+.join-steps li:before {
+    content: '➤'; /* お好みのアイコンを使用 */
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff8a40; /* アイコンの色 */
 }
 
 /* 注意事項のスタイル */
 .join-notes h4,
 .contact-info h4 {
-    font-size: 20px;
-    color: #0077cc;
+    font-size: 22px; /* フォントサイズを少し大きく */
+    color: #e74c3c; /* 色を変更 */
     margin-top: 0;
     margin-bottom: 15px;
 }
@@ -436,28 +491,29 @@ section {
 
 .join-notes li {
     font-size: 16px;
-    color: #555;
+    color: #7f8c8d; /* 色を変更 */
     margin-bottom: 10px;
 }
 
 /* 連絡先情報のスタイル */
 .contact-info p {
     font-size: 18px;
-    color: #555;
+    color: #7f8c8d; /* 色を変更 */
     margin-bottom: 10px;
 }
 
 .contact-info a {
     font-size: 18px;
-    color: #0077cc;
+    color: #e67e22; /* 色を変更 */
     text-decoration: none;
-    border-bottom: 1px dotted #0077cc;
     transition: color 0.3s;
+    border-bottom: 1px dashed #e67e22; /* 下線を追加 */
 }
 
 .contact-info a:hover {
-    color: #0055aa;
+    color: #d35400; /* ホバー時の色を変更 */
 }
+
 
 /* FAQセクションのスタイル */
 #faq {
@@ -473,26 +529,53 @@ section {
     font-size: 24px;
     color: #333;
     margin-bottom: 30px;
-    border-bottom: 2px solid #0077cc;
     padding-bottom: 10px;
 }
 
 /* 各FAQ項目のスタイル */
-.faq-item {
-    margin-bottom: 30px;
-}
-
-.faq-question {
-    font-size: 20px;
-    color: #0077cc;
-    margin-bottom: 15px;
-}
-
-.faq-answer {
+.stylish {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px; /* 丸みを追加 */
+  }
+  
+  .accordion-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    width: 100%;
+    text-align: left;
+    padding: 12px 20px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    position: relative;
+    background: linear-gradient(145deg, #f3f4f6, #e1e2e4); /* グラデーションを追加 */
+    margin-bottom: 10px; /* 余白の追加 */
+  }
+  
+  .accordion-button:hover {
+    background: linear-gradient(145deg, #e1e2e4, #f3f4f6);
+  }
+  
+  .icon {
+    position: absolute;
+    right: 20px;
+    transition: transform 0.3s;
     font-size: 18px;
-    color: #555;
-    padding-left: 30px;  /* QとAの文字の位置を揃えるための余白 */
-}
+  }
+  
+  .accordion-button.active .icon {
+    transform: rotate(45deg);
+  }
+  
+  .accordion-content {
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    padding: 10px 20px;
+    background: #f7fafc; /* 軽い背景色 */
+    margin-bottom: 10px;
+  }
+  
 
 /* お問い合わせセクションのスタイル */
 #contact {
@@ -507,7 +590,6 @@ section {
     font-size: 24px;
     color: #333;
     margin-bottom: 20px;
-    border-bottom: 2px solid #0077cc;
     padding-bottom: 10px;
 }
 
@@ -544,7 +626,7 @@ section {
 }
 
 .form-group input[type="submit"] {
-    background-color: #0077cc;
+    background-color: #ff8a40;
     color: #fff;
     padding: 10px 20px;
     font-size: 18px;
@@ -555,7 +637,7 @@ section {
 }
 
 .form-group input[type="submit"]:hover {
-    background-color: #0055aa;
+    background-color: #ff8a40;
 }
 
 /* フッターセクションのスタイル */
@@ -578,7 +660,7 @@ section {
 }
 
 .footer-section h3 {
-    border-bottom: 2px solid #0077cc;
+    border-bottom: 2px solid  #ff8a40;
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
@@ -593,7 +675,7 @@ section {
 }
 
 .footer-section ul li a {
-    color: #0077cc;
+    color: #ff8a40;
     text-decoration: none;
 }
 
@@ -618,10 +700,10 @@ section {
 /* Font Awesome ソーシャルアイコンの基本スタイル */
 .fab {
     font-size: 20px;
-    color: #0077cc;
+    color: #ff8a40;
     transition: color 0.3s;
 }
 
 .fab:hover {
-    color: #0055aa;
+    color: #ff8a40;
 }
