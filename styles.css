@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: 'Noto Sans JP', sans-serif; /* 例としてGoogle FontsのNoto Sans JPを使用 */
+    font-family: 'Roboto', sans-serif;
     font-size: 16px;
     line-height: 1.5;
     background-color: #000;
@@ -16,9 +16,10 @@ body {
 
 
 
+
 /* ヘッダー全体のスタイル */
 #mainHeader {
-    background-color: #fff; /* 背景色を白に変更 */
+    background-color: #F4F5F7; /* 背景色を白に変更 */
     color: #000;            /* テキストの色を黒に変更 */
     width: 100%;            /* 幅を100%に設定 */
     position: fixed;        /* ヘッダーを固定位置に設定 */
@@ -255,7 +256,7 @@ section {
 
 /* サークルについてのセクションのスタイル */
 #about {
-    background-color: #fff;   /* 白色の背景 */
+    background-color: #F4F5F7;   /* 白色の背景 */
     padding: 40px 40px;         /* 内側の余白 */
     margin: 20px 0;             /* 上下の余白 */
     position: relative;         /* 子要素の絶対位置を制御するため */
@@ -276,8 +277,13 @@ section {
 
 #about p {
     font-size: 16px;            /* テキストのフォントサイズ */
-    color: #666;                /* テキストの文字色 */
+    color: #333;                /* テキストの文字色 */
     line-height: 1.6;           /* テキストの行間 */
+    background-color: #F4F5F7; /* 半透明の白 */
+    padding: 50px; /* テキストと四角形の間の余白 */
+  
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* 四角形に影を追加 */
+
 }
 
 #about .about-content {
@@ -311,11 +317,31 @@ section {
     transform: translateX(0);
     opacity: 1;
 }
-
+#about::before {
+    content: "";
+    position: absolute;
+    bottom: 0; /* 文章の下に配置 */
+    right: -50px; /* 右側に配置 */
+    width: 40%; /* 平行四辺形の幅（必要に応じて調整） */
+    height: 60%; /* 平行四辺形の高さ（必要に応じて調整） */
+    background-color: #2e2e2e; /* 平行四辺形の背景色（必要に応じて変更） */
+    transform: skew(-20deg); /* 傾斜を設定 */
+    z-index: -1; /* 他のコンテンツの下に配置 */
+}
+#about::after {
+    content: "";
+    position: absolute;
+    top: 30%; /* 位置を少し上に調整 */
+    left: 0; /* 左側に配置 */
+    width: 80%; /* 四角形の幅（必要に応じて調整） */
+    height: 60%; /* 四角形の高さ（必要に応じて調整） */
+    background-color: #DD552F; /* 四角形の背景色（適切な色に変更） */
+    z-index: -2; /* 平行四辺形の下に配置 */
+}
 
 /* 活動内容セクションのスタイル */
 #activities {
-    background-color: #fff;   /* 薄いグレーの背景 */
+    background-color: #2e2e2e;   /* 薄いグレーの背景 */
     padding: 40px 20px;         /* 内側の余白 */
     margin: 20px 0;             /* 上下の余白 */
     margin-top: 0;      /* 上部の余白を0に */
@@ -326,7 +352,7 @@ section {
 #activities h2 {
     font-size: 24px;            /* 見出しのフォントサイズ */
     margin-bottom: 20px;        /* 見出しの下の余白 */
-    color: #333;                /* 見出しの文字色 */
+    color: #F4F5F7;                /* 見出しの文字色 */
     padding-bottom: 10px;       /* ボーダーと見出しの間の余白 */
 }
 
@@ -337,7 +363,7 @@ section {
 
 #activities li {
     font-size: 16px;            /* リスト項目のフォントサイズ */
-    color: #555;                /* リスト項目の文字色 */
+    color: #F4F5F7;                /* リスト項目の文字色 */
     margin-bottom: 10px;        /* リスト項目間の余白 */
     line-height: 1.6;           /* リスト項目の行間 */
 }
@@ -349,19 +375,27 @@ section {
 .slide img {
     width: 100%;
     max-width: 600px;
-    margin: 20px auto;
+    margin: 0 auto 0 auto; /* 上右下左の順でマージンを指定 */
 }
 
 .slide h3 {
-    margin-top: 10px;
+    margin-top: 0;  /* こちらを追加 */
+    color: #F4F5F7;
+    line-height: 1.6;           /* テキストの行間 */
+    background-color: #DD552F; /* 半透明の白 */
+    padding: 40px; /* テキストと四角形の間の余白 */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* 四角形に影を追加 */
 }
 
 .slide p {
     margin-top: 5px;
+    color: #F4F5F7;
 }
+
+
 /*ニュースセクション*/
 #news {
-    background-color: #fff;   /* 薄いグレーの背景 */
+    background-color: #F4F5F7;   /* 薄いグレーの背景 */
     padding: 40px 20px;         /* 内側の余白 */
     margin: 20px 0;             /* 上下の余白 */
     margin-top: 0;      /* 上部の余白を0に */
@@ -389,17 +423,18 @@ section {
     display: block;
     padding: 10px 20px;
     margin: 0 5px;
-    background-color: #ddd;
+    background-color: #2e2e2e;  /* タブの背景色を#2e2e2eに変更 */
+    color: #fff;                /* タブのテキスト色を白に変更 */
     border-radius: 5px 5px 0 0;
     transition: background-color 0.3s;
 }
 
 .tab li a:hover {
-    background-color: #bbb;
+    background-color: #454545;  /* タブをマウスオーバーしたときの色を少し明るく */
 }
 
 .tab li.active a {
-    background-color: #fff;
+    background-color: #1d1d1d;  /* アクティブなタブの背景色を少し暗く */
     cursor: default;
 }
 
@@ -432,7 +467,7 @@ section {
 
 /* 参加方法セクション全体のスタイル */
 #join {
-    background: linear-gradient(to bottom, #f0f2f7, #f7f9fc); /* グラデーション背景 */
+    background-color: #F4F5F7;  
     padding: 40px 20px;
     margin-top: 0;
     margin-bottom: 0;
@@ -517,7 +552,7 @@ section {
 
 /* FAQセクションのスタイル */
 #faq {
-    background-color: #fff;     /* 白色の背景 */
+    background-color: #F4F5F7;     /* 白色の背景 */
     padding: 40px 20px;         /* 内部の余白 */
     margin-top: 0;      /* 上部の余白を0に */
     margin-bottom: 0;
@@ -579,7 +614,7 @@ section {
 
 /* お問い合わせセクションのスタイル */
 #contact {
-    background-color: #f9f9f9;     /* 薄灰色の背景 */
+    background-color: #F4F5F7;     /* 薄灰色の背景 */
     padding: 40px 20px;            /* 内部の余白 */
     margin-top: 0;      /* 上部の余白を0に */
     margin-bottom: 0;
