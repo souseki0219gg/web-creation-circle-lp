@@ -271,7 +271,7 @@ section {
 #about h2 {
     font-size: 50px;
     margin-bottom: -40px;
-    color: #333;
+    color: #ff6600;
     padding-bottom: 10px;
     text-align: left;
     position: relative;
@@ -336,13 +336,18 @@ section {
     margin-top: 0;      /* 上部の余白を0に */
     margin-bottom: 0;
     padding-bottom: 60px; /* この値はお好みに応じて調整してください */
+    position: relative;  /* 追加: このセクション内での絶対的なポジションの基準点を設定 */
 }
 
 #activities h2 {
-    font-size: 24px;            /* 見出しのフォントサイズ */
-    margin-bottom: 20px;        /* 見出しの下の余白 */
-    color: #333;                /* 見出しの文字色 */
-    padding-bottom: 10px;       /* ボーダーと見出しの間の余白 */
+    position: absolute;        /* 絶対的なポジションを追加 */
+    top: -5px;  /* この値を調整して、h2の位置を変更します */
+    left: 20px;  /* この値を調整して、h2の位置を変更します */
+    font-size: 50px;           /* 見出しのフォントサイズ */
+    margin-bottom: 20px;       /* 見出しの下の余白 */
+    color: #ff6600;               /* 見出しの文字色 */
+    padding-bottom: 10px;      /* ボーダーと見出しの間の余白 */
+    z-index: 10;  /* 必要に応じてこの値を調整して、h2が他の要素よりも前に表示されるようにします */
 }
 
 #activities ul {
@@ -358,6 +363,7 @@ section {
 }
 
 .slide {
+    position: relative;        /* 相対的なポジションを追加 */
     text-align: center;
 }
 
@@ -368,14 +374,16 @@ section {
 }
 
 .slide h3 {
-    margin-top: 0;  /* こちらを追加 */
+    margin-top: 20px;  /* 上の間隔を20pxに設定 */
+    margin-bottom: 20px;  /* 下の間隔を20pxに設定 */
     color: #333;
-    line-height: 1.6;           /* テキストの行間 */
+    line-height: 1.6;  /* テキストの行間 */
 }
 
 .slide p {
     margin-top: 5px;
     color: #333;
+    text-align: center;
 }
 
 
@@ -388,10 +396,11 @@ section {
     margin-bottom: 0;
     padding-bottom: 60px; /* この値はお好みに応じて調整してください */
 }
+
 #news h2 {
-    font-size: 2rem;
+    font-size: 50px;
     margin-bottom: 20px;
-    color: #333; /* Dark grey */
+    color: #ff6600; /* Dark grey */
 }
 
 .tab {
@@ -409,18 +418,18 @@ section {
     display: block;
     padding: 10px 20px;
     margin: 0 5px;
-    background-color: #2e2e2e;  /* タブの背景色を#2e2e2eに変更 */
-    color: #fff;                /* タブのテキスト色を白に変更 */
+    background-color: #2e2e2e;
+    color: #fff;
     border-radius: 5px 5px 0 0;
     transition: background-color 0.3s;
 }
 
 .tab li a:hover {
-    background-color: #454545;  /* タブをマウスオーバーしたときの色を少し明るく */
+    background-color: #454545;
 }
 
 .tab li.active a {
-    background-color: #1d1d1d;  /* アクティブなタブの背景色を少し暗く */
+    background-color: #1d1d1d;
     cursor: default;
 }
 
@@ -450,6 +459,58 @@ section {
     border-bottom: none;
 }
 
+/* 追加されたCSS */
+#news .area ul {
+    list-style: none outside;
+    margin: 0;
+    padding: 0;
+}
+
+#news .area li a {
+    display: flex;
+    flex-wrap: nowrap;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #CCC;
+    padding: 20px 20px;
+}
+
+#news .area li:first-child a {
+    border-top: 1px solid #CCC;
+}
+
+#news .area li .date {
+    margin: 0;
+    min-width: 120px;
+    font-size: 16px;
+    color: #999;
+    padding: 0 20px 0 0;
+}
+
+#news .area li .title {
+    margin: 0;
+    width: 100%;
+}
+
+#news .area li a:hover .title {
+    color: #ff8a40;
+}
+
+@media screen and (max-width: 767px) {
+    #news .area li a {
+        flex-wrap: wrap;
+    }
+
+    #news .area li .date {
+        min-width: 100px;
+    }
+
+    #news .area li .title {
+        margin-top: 10px;
+    }
+}
+
+
 
 /* 参加方法セクション全体のスタイル */
 #join {
@@ -470,9 +531,15 @@ section {
 
 /* 参加手順リストのスタイル */
 .join-steps {
-    list-style-type: none; /* デフォルトの番号を削除 */
-    margin-left: 30px;
-    margin-bottom: 30px;
+    background: linear-gradient(135deg, #f9f9f9 0%, #e8e8e8 100%); 
+    border-radius: 20px;
+    padding: 20px 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.05); 
+    margin-bottom: 25px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.3s;
 }
 
 .join-steps li {
@@ -482,6 +549,16 @@ section {
     line-height: 1.6;
     position: relative;
     padding-left: 30px; /* アイコンのスペースを作るためのパディング */
+    background-color: #FFFFFF; /* 白色の背景 */
+    border-radius: 12px; /* 角を丸くする */
+    padding: 10px 15px; /* 内部の余白 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* 影を追加 */
+    margin-bottom: 10px; /* 下部の余白を追加 */
+}
+
+.join-steps li:hover {
+    transform: translateY(-5px); /* ホバー時に少し上に浮かせる */
+    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.06); 
 }
 
 /* リストの前にアイコンを追加 */
@@ -504,22 +581,51 @@ section {
 }
 
 .join-notes ul {
-    list-style-type: disc;
-    margin-left: 30px;
-    margin-bottom: 30px;
+    list-style-type: none; /* リストマークをなしに */
+    padding: 0;
 }
 
 .join-notes li {
-    font-size: 16px;
-    color: #333; /* 色を変更 */
-    margin-bottom: 10px;
+    background: linear-gradient(135deg, #f9f9f9 0%, #e8e8e8 100%);
+    border-radius: 20px;
+    padding: 20px 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+    max-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.3s;
 }
 
+
+
 /* 連絡先情報のスタイル */
+.contact-info {
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 20px 30px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    max-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+}
+
+
 .contact-info p {
     font-size: 18px;
     color: #333; /* 色を変更 */
     margin-bottom: 10px;
+    background-color: #FFFFFF; /* 白色の背景 */
+    border-radius: 12px; /* 角を丸くする */
+    padding: 10px 15px; /* 内部の余白 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* 影を追加 */
+    display: inline-block; /* ブロック要素のように表示 */
+    margin-bottom: 10px; /* 下部の余白を追加 */
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    transition: color 0.3s;
 }
 
 .contact-info a {
@@ -528,10 +634,19 @@ section {
     text-decoration: none;
     transition: color 0.3s;
     border-bottom: 1px dashed #e67e22; /* 下線を追加 */
+    background-color: #FFFFFF; /* 白色の背景 */
+    border-radius: 12px; /* 角を丸くする */
+    padding: 10px 15px; /* 内部の余白 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* 影を追加 */
+    display: inline-block; /* ブロック要素のように表示 */
+    margin-bottom: 10px; /* 下部の余白を追加 */
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .contact-info a:hover {
-    color: #d35400; /* ホバー時の色を変更 */
+    color: #c34113; /* ホバー時の色を少し濃く */
 }
 
 
