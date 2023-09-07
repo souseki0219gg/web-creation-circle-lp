@@ -148,3 +148,30 @@ buttons.forEach(button => {
   });
 });
 
+let hasAnimatedHome = false;  // #homeのアニメーションが再生されたかをチェック
+let hasAnimatedAbout = false;  // #aboutのアニメーションが再生されたかをチェック
+
+function playAnimation(selector, triggerFlag) {
+    if (!triggerFlag) {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(el => {
+            el.style.animationPlayState = 'running';
+        });
+        return true;
+    }
+    return false;
+}
+
+window.addEventListener('scroll', function() {
+    if (window.scrollY > 0) {
+        hasAnimatedHome = playAnimation('#home h1, #home p', hasAnimatedHome);
+    }
+    
+    const aboutSection = document.querySelector('#about');
+    const aboutTop = aboutSection.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    if (aboutTop < windowHeight) {
+        hasAnimatedAbout = playAnimation('#about h3, #about p', hasAnimatedAbout);
+    }
+});
+
