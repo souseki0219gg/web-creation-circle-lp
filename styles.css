@@ -120,6 +120,11 @@ nav ul li a:hover::after {
     text-align: left;   /* 中央揃えから左揃えに変更 */
     margin: 20px 0;   /* 上下のマージンを均一に */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+    opacity: 0;  /* 初期状態では見えないようにする */
+    animation-name: slideUp;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;  /* アニメーション終了後のスタイルを維持 */
+    animation-play-state: paused;   /* スクロールまでアニメーションを一時停止 */
 }
 
 #home img {
@@ -135,6 +140,11 @@ nav ul li a:hover::after {
     text-align: left;   /* 中央揃えから左揃えに変更 */
     margin: 20px 0;   /* 上下のマージンを均一に */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+    opacity: 0;  /* 初期状態では見えないようにする */
+    animation-name: slideUp;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;  /* アニメーション終了後のスタイルを維持 */
+    animation-play-state: paused;   /* スクロールまでアニメーションを一時停止 */
 }
 
 #slideshow {
@@ -254,6 +264,17 @@ section {
     }
 }
 
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* サークルについてのセクションのスタイル */
 #about {
     background: #F4F5F7;
@@ -285,13 +306,22 @@ section {
     color: #333;                /* 見出しの文字色 */
     padding-bottom: 10px;       /* ボーダーと見出しの間の余白 */
     text-align: center; /* テキストを中央に配置します。 */
+    opacity: 0;  /* 初期状態では見えないようにする */
+    animation-name: slideUp;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;  /* アニメーション終了後のスタイルを維持 */
+    animation-play-state: paused;   /* スクロールまでアニメーションを一時停止 */
 }
 #about p {
     font-size: 16px;            /* テキストのフォントサイズ */
     color: #333;                /* テキストの文字色 */
     line-height: 1.6;           /* テキストの行間 */
     padding: 50px; /* テキストと四角形の間の余白 */
-
+    opacity: 0;  /* 初期状態では見えないようにする */
+    animation-name: slideUp;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;  /* アニメーション終了後のスタイルを維持 */
+    animation-play-state: paused;   /* スクロールまでアニメーションを一時停止 */
 }
 
 #about .about-content {
@@ -671,9 +701,9 @@ section {
 .stylish {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 5px; /* 丸みを追加 */
-  }
-  
-  .accordion-button {
+}
+
+.accordion-button {
     cursor: pointer;
     border: none;
     outline: none;
@@ -684,24 +714,24 @@ section {
     position: relative;
     background: linear-gradient(145deg, #f3f4f6, #e1e2e4); /* グラデーションを追加 */
     margin-bottom: 10px; /* 余白の追加 */
-  }
-  
-  .accordion-button:hover {
+}
+
+.accordion-button:hover {
     background: linear-gradient(145deg, #e1e2e4, #f3f4f6);
-  }
-  
-  .icon {
+}
+
+.icon {
     position: absolute;
     right: 20px;
     transition: transform 0.3s;
     font-size: 18px;
-  }
-  
-  .accordion-button.active .icon {
+}
+
+.accordion-button.active .icon {
     transform: rotate(45deg);
-  }
-  
-  .accordion-content {
+}
+
+.accordion-content {
     opacity: 0;
     transform: scaleY(0);
     transform-origin: top;
@@ -709,8 +739,8 @@ section {
     padding: 10px 20px;
     background: #f7fafc; /* 軽い背景色 */
     margin-bottom: 10px;
-  }
-  
+}
+
 
 /* お問い合わせセクションのスタイル */
 #contact {
@@ -722,8 +752,8 @@ section {
 }
 
 #contact h2 {
-    font-size: 24px;
-    color: #333;
+    font-size: 40px;
+    color:#ff6600;
     margin-bottom: 20px;
     padding-bottom: 10px;
 }
