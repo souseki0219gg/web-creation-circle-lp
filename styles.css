@@ -1,328 +1,347 @@
 /* 一般的なリセット */
+/* すべての要素に対する基本的なスタイルリセット */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0;            /* すべての要素の外側の余白を0に設定 */
+    padding: 0;           /* すべての要素の内側の余白を0に設定 */
+    box-sizing: border-box; /* ボックスのサイズ計算方法を、ボーダーを含めたサイズに設定 */
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    background-color: #000;
-    margin: 0;
-    padding: 0;
+    font-family: 'Roboto', sans-serif;  /* ボディのフォントを'Roboto'に設定し、利用不可の場合はsans-serifフォントにフォールバック */
+    font-size: 16px;                    /* ボディの基本フォントサイズを16pxに設定 */
+    line-height: 1.5;                   /* テキストの行の高さをフォントサイズの1.5倍に設定 */
+    background-color: #000;             /* ボディの背景色を黒に設定 */
+    margin: 0;                          /* ボディの外側の余白を0に設定 */
+    padding: 0;                         /* ボディの内側の余白を0に設定 */
 }
+
 
 
 
 
 /* ヘッダー全体のスタイル */
 #mainHeader {
-    background-color: #F4F5F7; /* 背景色を白に変更 */
-    color: #000;            /* テキストの色を黒に変更 */
-    width: 100%;            /* 幅を100%に設定 */
-    position: fixed;        /* ヘッダーを固定位置に設定 */
-    top: 0;                 /* ページの上部に配置 */
-    z-index: 1000;          /* 他の要素の上に表示するためのz-index */
-    padding: 10px 20px;     /* 内部のスペース */
-    transition: transform 0.3s; /* スムーズなアニメーションのための遷移 */
-    display: flex;          /* Flexboxコンテナとして設定 */
-    justify-content: space-between; /* 主要コンテンツとナビゲーションの間にスペースを追加 */
-    align-items: center;    /* 子要素を縦の中央に配置 */
-    
+    background-color: #F4F5F7; /* ヘッダーの背景色を明るい灰色（コメントには「白」とありますが、#F4F5F7は明るい灰色です）に設定 */
+    color: #000;               /* ヘッダー内のテキスト色を黒に設定 */
+    width: 100%;               /* ヘッダーの幅をページ全体の100%に設定 */
+    position: fixed;           /* ヘッダーをページ上部に固定 */
+    top: 0;                    /* ヘッダーの上辺をページの上部に合わせる */
+    z-index: 1000;             /* z-indexを高く設定し、他の要素の上にヘッダーを表示する */
+    padding: 10px 20px;        /* ヘッダーの内部に上下に10px、左右に20pxのスペース（パディング）を追加 */
+    transition: transform 0.3s; /* transformプロパティの変更を0.3秒でスムーズに遷移させる */
+    display: flex;             /* ヘッダー内の要素をflexboxで並べる */
+    justify-content: space-between; /* ヘッダー内の主要な要素とナビゲーションの間に均等のスペースを追加 */
+    align-items: center;       /* ヘッダーの高さ方向の中央に要素を配置 */
 }
 
+
 #mainHeader.hide {
-    transform: translateY(-100%); /* ヘッダーを画面の上にスライドさせる */
+    transform: translateY(-100%); /* ヘッダーを縦方向にその高さ分だけ上に移動（スライド）させる */
 }
+
 
 /* ナビゲーションのスタイル */
 nav ul {
-    list-style: none;       /* リストのマークを削除 */
-    padding: 0;             /* パディングをリセット */
-    margin: 0;              /* マージンをリセット */
-    display: flex;          /* 要素を横並びにする */
-    justify-content: flex-end; /* 右寄せにする */
+    list-style: none;       /* 通常の順序なしリストに表示される点やマークを削除 */
+    padding: 0;             /* リストの内部の余白（パディング）をリセット（0に設定） */
+    margin: 0;              /* リストの外部の余白（マージン）をリセット（0に設定） */
+    display: flex;          /* リストアイテム（<li>タグ）を横並びに表示するためのFlexboxを使用 */
+    justify-content: flex-end; /* Flexboxを使用してリストアイテムをコンテナの右端に配置 */
 }
 
+
 nav ul li {
-    margin: 0 15px;         /* 各項目の間隔 */
+    margin: 0 15px;         /* 上下にはマージンを追加せず、左右に15ピクセルのマージンを設定。これにより、リストアイテム間にスペースが生まれる */
 }
 
 nav ul li a {
-    color: #000;           /* リンクの色を黒に変更 */
-    text-decoration: none;  /* 下線を削除 */
-    transition: color 0.3s; /* 色の遷移効果 */
-    letter-spacing: -0.5px;  /* 文字間隔を0.5ピクセル狭める */
+    color: #000;           /* リンクのテキスト色を黒に設定 */
+    text-decoration: none;  /* リンクの下線を削除 */
+    transition: color 0.3s; /* リンクの色が変わるときの遷移（アニメーション）を0.3秒間で行う */
+    letter-spacing: -0.5px;  /* リンクの文字間隔を0.5ピクセルだけ狭める */
 }
 
 nav ul li a:hover {
-    color: #ff6600;         /* ホバー時の色 */
+    color: #ff6600;         /* リンクにマウスカーソルが合わさった（ホバーした）時のテキスト色をオレンジ色に変更 */
 }
 
 nav ul li a::after {
-    content: ""; /* 空のコンテンツ */
-    display: block;
-    width: 0; /* 初期状態では幅0 */
-    height: 2px; /* 線の太さ */
-    background: #ff6600; /* 線の色をオレンジに */
-    transition: width 0.3s; /* 幅のアニメーション効果 */
-    margin: 5px auto 0; /* 上に5pxのマージンを設定して、左右は中央揃え */
+    content: "";            /* 空のコンテンツを追加。これにより、リンクの下に線を表示する効果を実現 */
+    display: block;         /* ブロックレベル要素として表示 */
+    width: 0;               /* 初期状態では線の幅を0に設定（見えない状態） */
+    height: 2px;            /* 線の太さを2ピクセルに設定 */
+    background: #ff6600;    /* 線の色をオレンジ色に設定 */
+    transition: width 0.3s; /* 線の幅が変わるときの遷移（アニメーション）を0.3秒間で行う */
+    margin: 5px auto 0;     /* 線の上に5ピクセルのマージンを設定。左右のマージンは自動（中央揃え） */
 }
 
+
 nav ul li a:hover::after {
-    width: 100%; /* ホバー時に幅を100%に */
+    width: 100%; /* リンクにマウスカーソルが合わさった（ホバーした）時に、下の線の幅を100%に拡大する。 */
 }
 
 /* CONTACT リンクの線の効果を取り除く */
 .contact-link::after {
-    display: none;
+    display: none; /* ".contact-link" の下の線を非表示にする */
 }
-
 
 /* コンタクトのリンクの初期状態 */
 .contact-link {
-    background-color: #ff6600; /* オレンジの背景 */
-    color: #fff;               /* 文字色を白に */
-    border: 2px solid #ff6600; /* 2ピクセルのオレンジボーダー */
-    padding: 5px 10px;         /* ボーダーの内側のスペースを追加 */
+    background-color: #ff6600; /* オレンジ色の背景を設定 */
+    color: #fff;               /* テキスト色を白に設定 */
+    border: 2px solid #ff6600; /* 2ピクセルのオレンジ色のボーダーを設定 */
+    padding: 5px 10px;         /* 内部のスペースを設定（上下5ピクセル、左右10ピクセル） */
     border-radius: 5px;        /* ボーダーの角を少し丸くする */
-    transition: background-color 0.3s, color 0.3s; /* 背景色と文字色の遷移効果 */
+    transition: background-color 0.3s, color 0.3s; /* 背景色と文字色が変わるときの遷移（アニメーション）を0.3秒間で行う */
 }
 
 /* コンタクトのリンクにカーソルを合わせた時の変化 */
 .contact-link:hover {
     background-color: #fff; /* 背景色を白に変更 */
-    color: #ff6600;         /* オレンジの文字色 */
+    color: #ff6600;         /* テキスト色をオレンジ色に変更 */
 }
+
 
 
 
 /* トップページのメインコンテンツ部分のスタイル */
 #home {
-    background-color: #000;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    min-height: 100vh;
-    margin-bottom: 0;   /* 追加: トップページの下部の余白を0に */
-    padding-bottom: 0;
-    display: flex;   /* 追加 */
-    flex-direction: column;   /* 追加 */
-    align-items: flex-start;   /* 追加 */
-    padding-left: 20px;   /* 追加 */
+    background-color: #000; /* 背景色を黒に設定 */
+    background-size: cover; /* 背景画像を要素のサイズに合わせてカバーするように設定 */
+    background-repeat: no-repeat; /* 背景画像を繰り返さないようにする */
+    background-position: center center; /* 背景画像の位置を中央に設定 */
+    min-height: 100vh; /* 最小高さをビューポートの高さの100%に設定 */
+    margin-bottom: 0;   /* トップページの下部の余白を0に設定 */
+    padding-bottom: 0; /* トップページの下部のパディングを0に設定 */
+    display: flex;   /* Flexboxコンテナとして要素を表示 */
+    flex-direction: column;   /* Flexboxの要素を縦方向に配置 */
+    align-items: flex-start;   /* 子要素を左側に揃える */
+    padding-left: 20px;   /* 左側の内部間隔を20ピクセルに設定 */
 }
+
 
 #home h1 {
-    font-size: 1.5rem;   /* h1のみの設定だったものをh1とpの両方に適用 */
-    color: #fff;
-    text-align: left;   /* 中央揃えから左揃えに変更 */
-    margin: 20px 0;   /* 上下のマージンを均一に */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
-    opacity: 0;  /* 初期状態では見えないようにする */
-    animation-name: slideUp;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;  /* アニメーション終了後のスタイルを維持 */
-    animation-play-state: paused;   /* スクロールまでアニメーションを一時停止 */
+    font-size: 1.5rem;   /* フォントサイズを1.5remに設定 */
+    color: #fff; /* テキストの色を白に設定 */
+    text-align: left;   /* テキストを左揃えに設定 */
+    margin: 20px 0;   /* 上下に20pxのマージンを設定し、左右は0に設定 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* テキストに影を追加。右に2px、下に2pxのオフセットと、半透明の黒色のぼかしを4pxで設定 */
+    opacity: 0;  /* テキストの不透明度を0に設定して、初期状態で見えなくする */
+    animation-name: slideUp; /* アニメーションの名前を「slideUp」として指定 */
+    animation-duration: 2s; /* アニメーションの持続時間を2秒に設定 */
+    animation-fill-mode: forwards;  /* アニメーション終了後も終了時点のスタイルを保持するように設定 */
+    animation-play-state: paused;   /* アニメーションは初期状態で一時停止している */
 }
+
 
 #home img {
-    display: block;
-    max-width: 100%;
-    margin: 0 auto;
-    margin-bottom: 30px;
+    display: block;        /* 画像をブロック要素として表示 */
+    max-width: 100%;       /* 画像の最大幅を親要素の100%に制限 */
+    margin: 0 auto;        /* 上下のマージンは0、左右は自動(中央寄せの効果) */
+    margin-bottom: 30px;   /* 下部のマージンだけ30pxに設定 */
 }
+
 
 #home p {
-    font-size: 1rem;   /* h1のみの設定だったものをh1とpの両方に適用 */
-    color: #fff;
-    text-align: left;   /* 中央揃えから左揃えに変更 */
-    margin: 20px 0;   /* 上下のマージンを均一に */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
-    opacity: 0;  /* 初期状態では見えないようにする */
-    animation-name: slideUp;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;  /* アニメーション終了後のスタイルを維持 */
-    animation-play-state: paused;   /* スクロールまでアニメーションを一時停止 */
+    font-size: 1rem;                 /* テキストのフォントサイズを1remに設定 */
+    color: #fff;                    /* テキストの色を白に設定 */
+    text-align: left;               /* テキストを左揃えに設定 */
+    margin: 20px 0;                 /* 上下に20pxのマージンを設定し、左右のマージンは0に設定 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* テキストに影を追加。2px右、2px下、4pxのぼかしで半透明の黒色を使用 */
+    opacity: 0;                     /* テキストを初期状態で透明に設定 */
+    animation-name: slideUp;        /* アニメーションの名前を"slideUp"に設定 */
+    animation-duration: 2s;        /* アニメーションの持続時間を2秒に設定 */
+    animation-fill-mode: forwards;  /* アニメーションが終了した後のスタイルを維持するように設定 */
+    animation-play-state: paused;   /* アニメーションを一時停止状態に設定 */
 }
 
+
 #slideshow {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    margin-left: -37px;
+    position: relative;       /* 要素の位置を他の要素に対して相対的に設定 */
+    width: 100vw;             /* 要素の幅をビューポートの100%に設定 */
+    height: 100vh;            /* 要素の高さをビューポートの100%に設定 */
+    overflow: hidden;         /* 要素の外側にはみ出たコンテンツを非表示にする */
+    margin-left: -37px;       /* 要素の左側のマージンを-37pxに設定 */
 }
 
 .slideshow-content {
-    position: absolute;
-    bottom:10%;
-    left: 0%;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    z-index: 2;
-    margin: 0 10%;
+    position: absolute;       /* 親要素(#slideshow)に対して絶対位置を指定 */
+    bottom: 10%;              /* 要素の下辺を親要素の下辺から10%の位置に設定 */
+    left: 0%;                /* 要素の左辺を親要素の左辺に合わせる */
+    color: #fff;             /* テキストの色を白に設定 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* テキストに2px右、2px下に影をつけ、ぼかしは4pxで、色は半透明の黒に設定 */
+    z-index: 2;              /* 他の要素に被らないようにz-indexを2に設定 */
+    margin: 0 10%;           /* 上下のマージンは0にし、左右のマージンは10%に設定 */
 }
 
+
 #slideshow .slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 1.5s, transform 1.5s; /* transform へのトランジションを追加 */
-    transform: scale(1.1); /* 初期値としてややズームインしておく */
-    z-index: 1;
+    position: absolute;               /* 要素の位置を親要素(#slideshow)に対して絶対的に設定 */
+    top: 0;                          /* 要素の上辺を親要素の上辺に合わせる */
+    left: 0;                         /* 要素の左辺を親要素の左辺に合わせる */
+    width: 100%;                     /* 要素の幅を親要素の100%に設定 */
+    height: 100%;                    /* 要素の高さを親要素の100%に設定 */
+    opacity: 0;                      /* 初期状態では要素を完全に透明にする */
+    transition: opacity 1.5s, transform 1.5s;  /* 透明度と変形の遷移効果を1.5秒で適用 */
+    transform: scale(1.1);           /* 初期状態では要素を1.1倍に拡大 */
+    z-index: 1;                      /* 他の要素に被らないようにz-indexを1に設定 */
 }
 
 #slideshow .slide img {
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
-    object-position: center;
+    width: 100%;                     /* 画像の幅を親要素(.slide)の100%に設定 */
+    height: 100vh;                   /* 画像の高さをビューポートの100%に設定 */
+    object-fit: cover;               /* 画像のアスペクト比を維持しながら要素にフィットさせ、余白を持たせない */
+    object-position: center;         /* 画像の中心を要素の中心に合わせる */
 }
 
 #slideshow .slide.active {
-    opacity: 1;
-    transform: scale(1); /* アクティブなスライドを通常の大きさに戻す */
-    z-index: 2; /* アクティブなスライドを他のスライドの上に表示 */
+    opacity: 1;                      /* アクティブなスライドを完全に不透明にする */
+    transform: scale(1);             /* アクティブなスライドの拡大を元に戻す */
+    z-index: 2;                      /* アクティブなスライドを他のスライドよりも前面に表示 */
 }
 
 .cta-container {
-    text-align: left; 
+    text-align: left;                /* テキストを左寄せにする */
 }
+
 
 
 
 section {
-    padding: 40px 20px;
-    background-color: #fff;
-    margin-bottom: 20px;
+    padding: 40px 20px;          /* セクションの内部に上下40px、左右20pxの余白を設定 */
+    background-color: #fff;     /* セクションの背景色を白に設定 */
+    margin-bottom: 20px;        /* セクションの下側に20pxのマージンを設定 */
 }
 
 .cta-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #ff6600;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    display: inline-block;      /* インラインブロックとして表示。要素のサイズをコンテンツに合わせる */
+    padding: 10px 20px;         /* ボタンの内部に上下10px、左右20pxの余白を設定 */
+    background-color: #ff6600;  /* ボタンの背景色をオレンジ色に設定 */
+    color: #fff;                /* テキストの色を白に設定 */
+    text-decoration: none;      /* テキストの下線を削除 */
+    border-radius: 5px;         /* ボタンの角を少し丸くする */
+    transition: background-color 0.3s;  /* 背景色の遷移効果を0.3秒で適用 */
 }
 
 .cta-button:hover {
-    background-color: #ff8a40;
-}
-/*スクロールダウン全体の場所*/
-.scrolldown1{
-    position:absolute;
-    left:50%;
-    bottom:10px;
-    height:50px;
-    z-index: 100;
+    background-color: #ff8a40;  /* ホバー時のボタンの背景色をやや明るいオレンジ色に変更 */
 }
 
+.scrolldown1 {
+    position: absolute;         /* 要素の位置を親要素に対して絶対的に設定 */
+    left: 50%;                  /* 親要素の中央に位置させる */
+    bottom: 10px;               /* 親要素の下辺から10pxの位置に設定 */
+    height: 50px;               /* 要素の高さを50pxに設定 */
+    z-index: 100;               /* 要素を他の要素の上に表示するためのz-index */
+}
+
+
 /*Scrollテキストの描写*/
-.scrolldown1 span{
-    position: absolute;
-    left:-15px;
-    top: -15px;
-    color: #eee;
-    font-size: 0.7rem;
-    letter-spacing: 0.05em;
+.scrolldown1 span {
+    position: absolute;     /* 親要素（.scrolldown1）に対して絶対位置を指定 */
+    left: -15px;            /* 親要素の左側から-15pxの位置に配置（親要素の外側に出る） */
+    top: -15px;             /* 親要素の上側から-15pxの位置に配置（親要素の外側に出る） */
+    color: #eee;            /* テキストの色を明るいグレーに設定 */
+    font-size: 0.7rem;      /* フォントサイズを0.7remに設定 */
+    letter-spacing: 0.05em; /* 文字間隔を少し広げる */
 }
 
 /* 線の描写 */
-.scrolldown1::after{
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 1px;
-    height: 30px;
-    background: #eee;
-    animation: pathmove 1.4s ease-in-out infinite;
-    opacity:0;
+.scrolldown1::after {
+    content: "";            /* 親要素に何も内容を持たない疑似要素を追加 */
+    position: absolute;     /* 親要素（.scrolldown1）に対して絶対位置を指定 */
+    top: 0;                 /* 親要素の上側からの位置を0に設定 */
+    width: 1px;             /* 線の幅を1pxに設定 */
+    height: 30px;           /* 線の長さを30pxに設定 */
+    background: #eee;       /* 線の色を明るいグレーに設定 */
+    animation: pathmove 1.4s ease-in-out infinite; /* 無限に繰り返される1.4秒のアニメーションを適用 */
+    opacity: 0;             /* 要素の透明度を0（完全に透明）に設定 */
 }
 
+
 /*高さ・位置・透過が変化して線が上から下に動く*/
-@keyframes pathmove{
-    0%{
-        height:0;
-        top:0;
-        opacity: 0;
+@keyframes pathmove {
+    0% {
+        height: 0;        /* 線の高さが0 */
+        top: 0;           /* 線の上端の位置が親要素の上端と同じ */
+        opacity: 0;       /* 完全に透明 */
     }
-    30%{
-        height:30px;
-        opacity: 1;
+    30% {
+        height: 30px;     /* 線の高さが30pxまで伸びる */
+        opacity: 1;       /* 完全に不透明 */
     }
-    100%{
-        height:0;
-        top:50px;
-        opacity: 0;
+    100% {
+        height: 0;        /* 線の高さが再び0になる */
+        top: 50px;        /* 線の上端の位置が親要素の上端から50px下がる位置に移動 */
+        opacity: 0;       /* 再び完全に透明 */
     }
 }
+
 
 @keyframes slideUp {
     from {
-        opacity: 0;
-        transform: translateY(50px);
+        opacity: 0;                 /* 完全に透明 */
+        transform: translateY(50px); /* 要素の位置が50px下に移動している状態 */
     }
     to {
-        opacity: 1;
-        transform: translateY(0);
+        opacity: 1;                 /* 完全に不透明 */
+        transform: translateY(0);    /* 元の位置に戻る */
     }
 }
+
 
 /* サークルについてのセクションのスタイル */
 #about {
-    background: #F4F5F7;
-    padding: 40px 40px;         /* 内側の余白 */
-    margin: 20px 0;             /* 上下の余白 */
-    position: relative;         /* 子要素の絶対位置を制御するため */
-    z-index: 1;                 /* 他の要素との重なり順を制御 */
-    margin-top: 0;      /* 上部の余白を0に */
-    margin-bottom: 0;
-    padding-bottom: 60px; /* この値はお好みに応じて調整してください */
-    overflow-x: hidden;
-    width: 100%;
+    background: #F4F5F7;       /* 背景色は明るいグレー */
+    padding: 40px 40px;         /* セクションの四辺に40pxの余白を追加 */
+    margin: 20px 0;             /* セクションの上下に20pxの外部余白を追加 */
+    position: relative;         /* 子要素に絶対位置を設定するための基準として使用 */
+    z-index: 1;                 /* 他の要素との重なり順序を制御。値が大きいほど前面に配置されます */
+    margin-top: 0;              /* 上部の外部余白を0に設定 */
+    margin-bottom: 0;           /* 下部の外部余白を0に設定 */
+    padding-bottom: 60px;       /* 下部の内部余白を60pxに設定。要素のコンテンツと境界の間のスペースを追加 */
+    overflow-x: hidden;         /* 横方向のオーバーフロー（はみ出るコンテンツ）を非表示にする */
+    width: 100%;                /* セクションの幅を親要素の100%に設定 */
 }
+
 
 #about h2 {
-    font-size: 50px;
-    margin-bottom: -40px;
-    color: #ff6600;
-    padding-bottom: 10px;
-    text-align: left;
-    position: relative;
-    z-index: 2;
-    align-self: flex-start;  /* 追加 */
+    font-size: 50px;           /* 文字のサイズを50pxに設定 */
+    margin-bottom: -40px;      /* 下部の外部余白を-40pxに設定。これにより次の要素との距離を縮小 */
+    color: #ff6600;            /* オレンジ色の文字色 */
+    padding-bottom: 10px;      /* 下部の内部余白を10pxに設定 */
+    text-align: left;          /* テキストを左揃えに設定 */
+    position: relative;        /* 要素の位置を微調整するための基準として使用 */
+    z-index: 2;                /* #about よりも前面に表示するためのz-indexの値。#aboutのz-indexよりも大きい */
+    align-self: flex-start;    /* Flexboxの子要素として、この要素を開始位置（左端）に配置 */
 }
 
+
 #about h3 {
-    font-size: 24px;            /* 見出しのフォントサイズ */
-    margin-bottom: 20px;        /* 見出しの下の余白 */
-    color: #333;                /* 見出しの文字色 */
-    padding-bottom: 10px;       /* ボーダーと見出しの間の余白 */
-    text-align: center; /* テキストを中央に配置します。 */
-    opacity: 0;  /* 初期状態では見えないようにする */
-    animation-name: slideUp;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;  /* アニメーション終了後のスタイルを維持 */
-    animation-play-state: paused;   /* スクロールまでアニメーションを一時停止 */
+    font-size: 24px;            /* 文字のサイズを24pxに設定 */
+    margin-bottom: 20px;        /* 下部の外部余白を20pxに設定 */
+    color: #333;                /* 濃いグレーの文字色 */
+    padding-bottom: 10px;       /* 下部の内部余白を10pxに設定 */
+    text-align: center;         /* テキストを中央揃えに設定 */
+    opacity: 0;                 /* 要素の初期状態の透明度を0（完全に透明）に設定 */
+    animation-name: slideUp;    /* "slideUp"というアニメーションを適用 */
+    animation-duration: 2s;     /* アニメーションの全体の実行時間を2秒に設定 */
+    animation-fill-mode: forwards; /* アニメーションが終了した後、終了状態のスタイルを維持 */
+    animation-play-state: paused;  /* 初期状態ではアニメーションを一時停止 */
 }
+
 #about p {
-    font-size: 16px;            /* テキストのフォントサイズ */
-    color: #333;                /* テキストの文字色 */
-    line-height: 1.6;           /* テキストの行間 */
-    padding: 50px; /* テキストと四角形の間の余白 */
-    opacity: 0;  /* 初期状態では見えないようにする */
-    animation-name: slideUp;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;  /* アニメーション終了後のスタイルを維持 */
-    animation-play-state: paused;   /* スクロールまでアニメーションを一時停止 */
+    font-size: 16px;               /* 文字のサイズを16pxに設定 */
+    color: #333;                   /* 濃いグレーの文字色に設定 */
+    line-height: 1.6;              /* 文字の行間を1.6倍に設定 */
+    padding: 50px;                 /* テキストの全方向の内部余白を50pxに設定 */
+    opacity: 0;                    /* 要素の初期状態の透明度を0（完全に透明）に設定 */
+    animation-name: slideUp;       /* "slideUp"というアニメーションを適用 */
+    animation-duration: 2s;        /* アニメーションの全体の実行時間を2秒に設定 */
+    animation-fill-mode: forwards; /* アニメーションが終了した後、終了状態のスタイルを維持 */
+    animation-play-state: paused;  /* 初期状態ではアニメーションを一時停止 */
 }
+
 
 #about .about-content {
     display: flex;     /* フレックスボックスを利用して内容を横並びにします。 */
@@ -550,6 +569,7 @@ section {
     margin-bottom: 0;
     padding-bottom: 60px;
     font-family: 'Noto Sans JP', sans-serif; /* 例: Google FontsのNoto Sans JP */
+    overflow-x: hidden; 
 }
 
 #join h2 {
@@ -557,6 +577,16 @@ section {
     color: #2c3e50; /* 濃い色に変更 */
     margin-bottom: 30px;
     padding-bottom: 10px;
+}
+@keyframes slideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* 参加手順リストのスタイル */
@@ -584,12 +614,17 @@ section {
     padding: 10px 15px; /* 内部の余白 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* 影を追加 */
     margin-bottom: 10px; /* 下部の余白を追加 */
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
-.join-steps li:hover {
-    transform: translateY(-5px); /* ホバー時に少し上に浮かせる */
-    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.06); 
+.join-steps li.active {
+    opacity: 1;
+    transform: translateX(0);
+    animation: slideInRight 1.5s forwards; /* 0.5s を 1.5s に変更 */
 }
+
 
 /* リストの前にアイコンを追加 */
 .join-steps li:before {
@@ -624,8 +659,16 @@ section {
     max-width: 85%;
     margin-left: auto;
     margin-right: auto;
-    transition: all 0.3s;
+    transition: all 1.5s;  /* 0.3s を 1.5s に変更 */
+    opacity: 0;
+    transform: translateX(100%); /* 横からのアニメーション */
 }
+
+.join-notes li.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 
 
 
