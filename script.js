@@ -1,88 +1,143 @@
+// DOM（Document Object Model）が完全に読み込まれたら、以下の関数を実行します。
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('contactForm');
     
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('お問い合わせ内容を送信しました。返信までしばらくお待ちください。');
-        // 実際のフォーム送信処理を実施する場合は以下のようなコードも追加することが考えられます。
-        // form.submit();
-    });
+  // 'contactForm'というIDを持つ要素を取得します。
+  const form = document.getElementById('contactForm');
+  
+  // 上記で取得したform要素に'submit'イベントのリスナーを追加します。
+  form.addEventListener('submit', function(e) {
+      
+      // デフォルトのsubmit動作をキャンセルします（例：ページのリロードを防ぐ）
+      e.preventDefault();
+      
+      // ユーザーにメッセージをアラートとして表示します。
+      alert('お問い合わせ内容を送信しました。返信までしばらくお待ちください。');
+      
+      // 実際にフォームの送信処理を行いたい場合は以下のコードを使用します。
+      // この例ではコメントアウトされています。
+      // form.submit();
+  });
 });
 
-// jQueryが読み込まれていることを確認
+
+// DOM（Document Object Model）が完全に読み込まれたら、以下の関数を実行します。
 $(document).ready(function() {
-    $('a[href^="#"]').on('click', function(event) {
-        event.preventDefault();  // デフォルトの動作をキャンセル
+    
+  // href属性の値が "#" で始まるaタグ（ページ内リンク）がクリックされた時の処理を定義します。
+  $('a[href^="#"]').on('click', function(event) {
+      
+      // デフォルトのクリック動作（例: ページ遷移）をキャンセルします。
+      event.preventDefault();
 
-        var target = $(this.getAttribute('href'));
+      // クリックされたaタグのhref属性の値（リンク先のID）を取得します。
+      var target = $(this.getAttribute('href'));
 
-        if (target.length) {
-            $('html, body').stop().animate({
-                scrollTop: target.offset().top
-            }, 1000);  // 1000ミリ秒（1秒）のアニメーション
-        }
-    });
+      // そのIDを持つ要素が存在する場合、以下の処理を実行します。
+      if (target.length) {
+          
+          // アニメーションを実行します。
+          // htmlとbodyのscrollTopの位置を、リンク先の要素の上部まで1秒かけてアニメーションさせます。
+          $('html, body').stop().animate({
+              scrollTop: target.offset().top
+          }, 1000);
+      }
+  });
 });
 
-let lastScrollTop = 0; // 前回のスクロール位置を保持する変数
 
+// 前回のスクロール位置を記録する変数を初期化
+let lastScrollTop = 0; 
+
+// window（ブラウザのビューポート）のスクロールイベントをリッスンする
 window.addEventListener('scroll', function() {
+    // 現在のスクロール位置を取得（異なるブラウザでも対応できるように）
     let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
+    // 現在のスクロール位置が前回のスクロール位置よりも大きい場合（下にスクロールした場合）
     if (currentScrollTop > lastScrollTop){
-        // 下にスクロールした場合
+        // 'mainHeader'のIDを持つ要素に'hide'クラスを追加
         document.getElementById('mainHeader').classList.add('hide');
     } else {
-        // 上にスクロールした場合
+        // そうでない場合（上にスクロールした場合）、'hide'クラスを削除
         document.getElementById('mainHeader').classList.remove('hide');
     }
     
-    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // モバイルブラウザでの負のスクロール値を防ぐための条件
+    // 現在のスクロール位置を更新。ただし、現在のスクロール位置が0以下の場合は0とする（モバイルブラウザのバグ対策）
+    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
 });
 
+
+
+// ドキュメントが完全に読み込まれたら実行する
 $(document).ready(function() {
-    let currentSlide = 0;
-    const slides = $('#slideshow .slide');
-    const slideCount = slides.length;
+  // 現在表示しているスライドのインデックスを保持する変数を初期化
+  let currentSlide = 0;
 
-    // 最初のスライドを表示
-    slides.eq(currentSlide).addClass('active');
+  // '#slideshow'内の'.slide'クラスの要素（スライド）を取得
+  const slides = $('#slideshow .slide');
 
-    setInterval(function() {
-        slides.eq(currentSlide).removeClass('active');
+  // スライドの総数を取得
+  const slideCount = slides.length;
 
-        // 次のスライドへ移動
-        currentSlide = (currentSlide + 1) % slideCount;
+  // 初期状態で最初のスライドをアクティブにする（表示する）
+  slides.eq(currentSlide).addClass('active');
 
-        slides.eq(currentSlide).addClass('active');
-    }, 5000); // 5秒ごとにスライドを切り替え
+  // 5秒ごとに指定した関数を繰り返し実行
+  setInterval(function() {
+      // 現在アクティブなスライドの'active'クラスを削除（非表示にする）
+      slides.eq(currentSlide).removeClass('active');
+
+      // 次のスライドのインデックスを計算（最後のスライドの次は最初のスライドに戻る）
+      currentSlide = (currentSlide + 1) % slideCount;
+
+      // 次のスライドをアクティブにする（表示する）
+      slides.eq(currentSlide).addClass('active');
+  }, 5000); // 上記の関数を5000ミリ秒（5秒）ごとに実行
 });
 
+
+
+// ドキュメントが完全に読み込まれたら実行する
 $(document).ready(function() {
-    const aboutImage = $('#about .about-image');  // 写真の要素を取得
-    aboutImage.addClass('initial');  // 初期状態のクラスを追加
+  // '#about'の中の'.about-image'クラスの要素（写真）を取得
+  const aboutImage = $('#about .about-image');  
 
-    $(window).on('scroll', function() {
-        const triggerPosition = aboutImage.offset().top - $(window).height() + 100;  // スクロール位置のトリガーとなる位置を計算
+  // 写真に'initial'クラスを追加して初期スタイルを適用
+  aboutImage.addClass('initial');  
 
-        if ($(window).scrollTop() > triggerPosition) {  
-            aboutImage.addClass('animate');  // トリガー位置を超えたらアニメーションを発火
-        }
-    });
-});
+  // ウィンドウのスクロールイベントをリッスン
+  $(window).on('scroll', function() {
+      // 写真の上端の位置から、ウィンドウの高さを引き、100を加算して、トリガーとなるスクロール位置を計算
+      const triggerPosition = aboutImage.offset().top - $(window).height() + 100;  
 
-$(document).ready(function(){
-  $(".owl-carousel").owlCarousel({
-      items: 2.5,
-      loop: true,
-      nav: true,
-      dots: true,
-      autoplay: true,
-      autoplayTimeout: 5000,
-      smartSpeed: 600,
-      margin: 20  // こちらを追加
+      // 現在のスクロール位置が計算したトリガー位置を超えたら
+      if ($(window).scrollTop() > triggerPosition) {  
+          // 写真に'animate'クラスを追加してアニメーションを開始
+          aboutImage.addClass('animate');  
+      }
   });
 });
+
+
+
+// ドキュメントが完全に読み込まれたときに実行する関数を指定
+$(document).ready(function(){
+
+  // .owl-carouselクラスを持つ要素にOwl Carouselを適用
+  $(".owl-carousel").owlCarousel({
+
+      items: 2.5,                // 画面に表示するスライドの数（非整数も指定可能）
+      loop: true,                // スライドのループ再生を有効化
+      nav: true,                 // 前後のナビゲーションボタンを表示
+      dots: true,                // スライド下部のドットナビゲーションを表示
+      autoplay: true,            // スライドの自動再生を有効化
+      autoplayTimeout: 5000,     // 自動再生時のスライド切替間隔（ミリ秒）
+      smartSpeed: 600,           // スライドのアニメーション速度（ミリ秒）
+      margin: 20                 // スライド間のマージン（ピクセル）
+
+  });
+});
+
 
 
 //任意のタブにURLからリンクするための設定
@@ -119,18 +174,27 @@ function GethashID (hashIDName){
     GethashID (hashName);//設定したタブの読み込み
   });
 
-  const buttons = document.querySelectorAll('.accordion-button');
+ // '.accordion-button'クラスを持つすべての要素を取得
+const buttons = document.querySelectorAll('.accordion-button');
 
+// 各ボタンに対して処理を行う
 buttons.forEach(button => {
+  // ボタンがクリックされたときのイベントリスナーを追加
   button.addEventListener('click', function() {
     // 他のすべてのアコーディオンコンテンツを閉じる
-    document.querySelectorAll('.accordion-content').forEach(content => {
-      if (this.nextElementSibling !== content) {
-        content.style.opacity = "0";
-        content.style.transform = "scaleY(0)";
-      }
-    });
+      // '.accordion-content'クラスを持つすべての要素に対して処理を行う
+      document.querySelectorAll('.accordion-content').forEach(content => {
+        // クリックされたボタンの次の要素（アコーディオンの内容）が現在のコンテンツと異なる場合
+        if (this.nextElementSibling !== content) {
+          // そのコンテンツの透明度を0に設定（見えなくする）
+          content.style.opacity = "0";
+          // そのコンテンツのY軸方向のスケールを0に設定（縮小）
+          content.style.transform = "scaleY(0)";
+        }
+      });
+     // '.accordion-button'クラスを持つすべてのボタンに対して処理を行う
     document.querySelectorAll('.accordion-button').forEach(btn => {
+      // それぞれのボタンから'active'クラスを削除
       btn.classList.remove('active');
     });
 
@@ -151,27 +215,86 @@ buttons.forEach(button => {
 let hasAnimatedHome = false;  // #homeのアニメーションが再生されたかをチェック
 let hasAnimatedAbout = false;  // #aboutのアニメーションが再生されたかをチェック
 
+/**
+ * 指定されたセレクタの要素にアニメーションを適用する関数。
+ * @param {string} selector - アニメーションを適用する要素のセレクタ。
+ * @param {boolean} triggerFlag - アニメーションを実行するかどうかを制御するフラグ。
+ * @returns {boolean} - アニメーションが実行された場合はtrue、そうでない場合はfalseを返す。
+ */
 function playAnimation(selector, triggerFlag) {
-    if (!triggerFlag) {
-        const elements = document.querySelectorAll(selector);
-        elements.forEach(el => {
-            el.style.animationPlayState = 'running';
-        });
-        return true;
-    }
-    return false;
+  // triggerFlagがfalseの場合にアニメーションを実行
+  if (!triggerFlag) {
+      // 指定されたセレクタに一致するすべての要素を取得
+      const elements = document.querySelectorAll(selector);
+      
+      // 取得した各要素に対して処理を行う
+      elements.forEach(el => {
+          // 要素のアニメーションを実行状態に設定
+          el.style.animationPlayState = 'running';
+      });
+      
+      // アニメーションが実行されたことを示すためにtrueを返す
+      return true;
+  }
+  
+  // アニメーションが実行されなかったことを示すためにfalseを返す
+  return false;
 }
 
+
+// スクロール時のイベントリスナーを追加
 window.addEventListener('scroll', function() {
-    if (window.scrollY > 0) {
-        hasAnimatedHome = playAnimation('#home h1, #home p', hasAnimatedHome);
-    }
-    
-    const aboutSection = document.querySelector('#about');
-    const aboutTop = aboutSection.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
-    if (aboutTop < windowHeight) {
-        hasAnimatedAbout = playAnimation('#about h3, #about p', hasAnimatedAbout);
-    }
+  // ページのスクロール位置が0より大きい場合
+  if (window.scrollY > 0) {
+      // '#home h1, #home p' に対してアニメーションを再生（既にアニメーションが再生されていない場合）
+      hasAnimatedHome = playAnimation('#home h1, #home p', hasAnimatedHome);
+  }
+  
+  // '#about' セクションの要素を取得
+  const aboutSection = document.querySelector('#about');
+  
+  // 現在のスクロール位置から'#about'セクションの上辺の位置までの距離を取得
+  const aboutTop = aboutSection.getBoundingClientRect().top;
+  
+  // ウィンドウの高さを取得
+  const windowHeight = window.innerHeight;
+
+  // '#about'セクションの上辺がウィンドウ内に入った場合
+  if (aboutTop < windowHeight) {
+      // '#about h3, #about p' に対してアニメーションを再生（既にアニメーションが再生されていない場合）
+      hasAnimatedAbout = playAnimation('#about h3, #about p', hasAnimatedAbout);
+  }
+});
+
+$(document).ready(function () {
+  // スクロールイベントの追加
+  $(window).scroll(function () {
+      // 各リスト項目をループ
+      $('.join-steps li').each(function (index) {
+          // ウィンドウのトップとリスト項目の位置を比較
+          if ($(window).scrollTop() + $(window).height() > $(this).offset().top + $(this).height() / 2) {
+              // ディレイを追加して順番にアニメーション
+              var delay = index * 150;
+              $(this).delay(delay).queue(function (next) {
+                  $(this).addClass('active');
+                  next();
+              });
+          }
+      });
+  });
+});
+
+$(document).ready(function () {
+  $(window).scroll(function () {
+      $('.join-notes li').each(function (index) {
+          if ($(window).scrollTop() + $(window).height() > $(this).offset().top + $(this).height() / 2) {
+              var delay = index * 150; // 各項目にディレイを追加して順番にアニメーション
+              $(this).delay(delay).queue(function (next) {
+                  $(this).addClass('active');
+                  next();
+              });
+          }
+      });
+  });
 });
 
