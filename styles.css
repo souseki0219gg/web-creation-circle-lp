@@ -1,5 +1,7 @@
-/* 一般的なリセット */
-/* すべての要素に対する基本的なスタイルリセット */
+/* メディアクエリを使用して、最大幅600ピクセルのデバイスで特定のスタイルを適用 */
+
+
+
 * {
     margin: 0;            /* すべての要素の外側の余白を0に設定 */
     padding: 0;           /* すべての要素の内側の余白を0に設定 */
@@ -106,7 +108,7 @@ nav ul li a:hover::after {
 
 /* トップページのメインコンテンツ部分のスタイル */
 #home {
-    background-color: #000; /* 背景色を黒に設定 */
+    background-color: #fff; /* 背景色を黒に設定 */
     background-size: cover; /* 背景画像を要素のサイズに合わせてカバーするように設定 */
     background-repeat: no-repeat; /* 背景画像を繰り返さないようにする */
     background-position: center center; /* 背景画像の位置を中央に設定 */
@@ -116,7 +118,7 @@ nav ul li a:hover::after {
     display: flex;   /* Flexboxコンテナとして要素を表示 */
     flex-direction: column;   /* Flexboxの要素を縦方向に配置 */
     align-items: flex-start;   /* 子要素を左側に揃える */
-    padding-left: 20px;   /* 左側の内部間隔を20ピクセルに設定 */
+    
 }
 
 
@@ -158,10 +160,10 @@ nav ul li a:hover::after {
 
 #slideshow {
     position: relative;       /* 要素の位置を他の要素に対して相対的に設定 */
-    width: 100vw;             /* 要素の幅をビューポートの100%に設定 */
+    width: 100%;             /* 要素の幅をビューポートの100%に設定 */
     height: 100vh;            /* 要素の高さをビューポートの100%に設定 */
     overflow: hidden;         /* 要素の外側にはみ出たコンテンツを非表示にする */
-    margin-left: -37px;       /* 要素の左側のマージンを-37pxに設定 */
+    
 }
 
 .slideshow-content {
@@ -914,4 +916,71 @@ section {
 
 .fab:hover {
     color: #ff8a40;
+}
+
+@media screen and (max-width: 600px) {
+    #mainHeader {
+        padding: 5px 15px;
+    }
+
+    #mainHeader h1 {
+        font-size: 1.5em;
+    }
+
+    /* ハンバーガーメニューアイコンのスタイル */
+    #hamburger-icon {
+        cursor: pointer;
+        display: block;
+        width: 30px; /* アイコンの幅 */
+        height: 25px; /* アイコンの高さ */
+    }
+
+    #hamburger-icon span {
+        display: block;
+        height: 3px; /* 各線の高さ */
+        background-color: #333; /* 線の色 */
+        margin: 5px 0; /* 線の間隔 */
+        transition: all 0.3s; /* スムーズなアニメーション */
+    }
+
+    /* デスクトップサイズのナビゲーションを非表示にする */
+    nav ul {
+        display: none;
+        flex-direction: column; /* モバイルデバイスでは縦並びに表示 */
+        width: 100%; /* メニューの幅を100%に設定 */
+        position: absolute; /* ナビゲーションを他のコンテンツの上に配置 */
+        top: 60px; /* ヘッダーの下に配置 */
+        left: 0;
+        background-color: #F4F5F7; /* ナビゲーションの背景色 */
+        border-top: 1px solid #ddd; /* 上部に境界線を設定 */
+    }
+
+    nav ul li {
+        text-align: center; /* リストアイテムを中央寄せにする */
+        padding: 10px 0; /* アイテム間のスペース */
+    }
+
+    /* ナビゲーションが表示されるときのスタイル */
+    nav ul.show {
+        display: flex;
+    }
+
+    nav ul li a.active-tap {
+        color: #ff6600; /* タップされた時のテキスト色をオレンジ色に変更 */
+    }
+    
+    nav ul li a.active-tap::after {
+        width: 100%; /* タップされた時に、下の線の幅を100%に拡大する */
+    }
+
+    .contact-link.active-tap {
+        background-color: #fff; /* 背景色を白に変更 */
+        color: #ff6600;         /* テキスト色をオレンジ色に変更 */
+        /* 必要に応じてその他のスタイル変更を追加 */
+    }
+    
+
+    #about .about-content{
+        flex-direction: column;
+    }
 }

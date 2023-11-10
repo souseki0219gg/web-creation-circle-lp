@@ -1,49 +1,3 @@
-// DOM（Document Object Model）が完全に読み込まれたら、以下の関数を実行します。
-document.addEventListener('DOMContentLoaded', function() {
-    
-  // 'contactForm'というIDを持つ要素を取得します。
-  const form = document.getElementById('contactForm');
-  
-  // 上記で取得したform要素に'submit'イベントのリスナーを追加します。
-  form.addEventListener('submit', function(e) {
-      
-      // デフォルトのsubmit動作をキャンセルします（例：ページのリロードを防ぐ）
-      e.preventDefault();
-      
-      // ユーザーにメッセージをアラートとして表示します。
-      alert('お問い合わせ内容を送信しました。返信までしばらくお待ちください。');
-      
-      // 実際にフォームの送信処理を行いたい場合は以下のコードを使用します。
-      // この例ではコメントアウトされています。
-      // form.submit();
-  });
-});
-
-
-// DOM（Document Object Model）が完全に読み込まれたら、以下の関数を実行します。
-$(document).ready(function() {
-    
-  // href属性の値が "#" で始まるaタグ（ページ内リンク）がクリックされた時の処理を定義します。
-  $('a[href^="#"]').on('click', function(event) {
-      
-      // デフォルトのクリック動作（例: ページ遷移）をキャンセルします。
-      event.preventDefault();
-
-      // クリックされたaタグのhref属性の値（リンク先のID）を取得します。
-      var target = $(this.getAttribute('href'));
-
-      // そのIDを持つ要素が存在する場合、以下の処理を実行します。
-      if (target.length) {
-          
-          // アニメーションを実行します。
-          // htmlとbodyのscrollTopの位置を、リンク先の要素の上部まで1秒かけてアニメーションさせます。
-          $('html, body').stop().animate({
-              scrollTop: target.offset().top
-          }, 1000);
-      }
-  });
-});
-
 
 // 前回のスクロール位置を記録する変数を初期化
 let lastScrollTop = 0; 
@@ -297,4 +251,48 @@ $(document).ready(function () {
       });
   });
 });
+
+function toggleMenu() {
+  var menu = document.getElementById('hamburger');
+  if (menu) {
+      menu.classList.toggle('show');
+      console.log('toggleMenu')
+  }
+}
+
+// ナビゲーションリンクのクリックイベントに対してもメニューを閉じる
+function closeMenu() {
+  var menu = document.querySelector('nav ul');
+  if (menu.classList.contains('show')) {
+      menu.classList.remove('show');
+  }
+}
+
+// ナビゲーションリンクにイベントリスナーを追加
+document.querySelectorAll('nav ul li a').forEach(link => {
+  link.addEventListener('click', closeMenu);
+});
+
+// タップされたときにスタイルを変更する関数
+function onLinkTap(event) {
+  const link = event.currentTarget;
+  link.classList.add('active-tap');
+
+  // 一定時間後にクラスを削除し、元のスタイルに戻す
+  setTimeout(() => {
+      link.classList.remove('active-tap');
+  }, 500); // ここでは500ミリ秒後にクラスを削除
+}
+
+// すべてのナビゲーションリンクにイベントリスナーを追加
+document.querySelectorAll('nav ul li a').forEach(link => {
+  link.addEventListener('touchstart', function() {
+      this.classList.add('active-tap');
+  });
+  link.addEventListener('touchend', function() {
+      this.classList.remove('active-tap');
+  });
+});
+
+
 
