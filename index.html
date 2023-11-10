@@ -15,18 +15,29 @@
     <body>
 
 <!-- ヘッダー -->
-        <header id="mainHeader">
-        <h1>Web Creation Circle</h1>
-        <nav>
-            <ul>
+<header id="mainHeader">
+    <h1>Web Creation Circle</h1>
+    <nav>
+        <div id="inner">
+            <ul id="hamburger">
                 <li><a href="#home">TOP</a></li>
                 <li><a href="#about">ABOUT</a></li>
                 <li><a href="#activities">ACTIVITIES</a></li>
                 <li><a href="#news">NEWS</a></li>
                 <li><a href="#contact" class="contact-link">CONTACT</a></li>
             </ul>
-        </nav>
-        </header>
+        </div>
+    </nav>
+    <div id="hamburger-icon" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <div id="mask"></div>
+</header>
+
+
 
 
         <!-- トップページ -->
@@ -35,7 +46,7 @@
             
             <!-- ヘッダー画像 -->
             <div id="slideshow">
-                <div class="slide active">
+                <div class="slide">
                     <img src="images/image1.jpg" alt="Image Description 1">
                     <div class="slideshow-content"></div>
                 </div>
@@ -263,7 +274,7 @@
         </div>
         </footer>
 
-        <!-- JavaScriptリンク（通常、</body>タグの直前に配置） -->
+        <!-- JavaScriptリンク -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
         <script src="script.js"></script>
